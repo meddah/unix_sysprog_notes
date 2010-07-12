@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     static struct option long_options[] = {
         {"help", no_argument, NULL, 'h'},
         {"file", required_argument, NULL, 'f'},
-        {"output", required_argument, &oflag, 'o'},
+        {"output", required_argument, NULL, 'o'},
         {"list", optional_argument, NULL, 'l'},
         {0, 0, 0, 0},
     };
@@ -21,16 +21,16 @@ int main(int argc, char *argv[])
     opterr = 0; /* global variable */
     while ((ch = getopt_long(argc, argv, "abh:cf", long_options, NULL)) != -1) {
         switch (ch) {
-            case 0:
-                if (oflag) 
-                    oarg = optarg;
-                break;
             case 'a':
                 aflag = 1;
                 break;
             case 'b':
                 bflag = 1;
                 barg = optarg;
+                break;
+            case 'o':
+                oflag = 1;
+                oarg = optarg;
                 break;
             case 'f':
                 fflag = 1;
